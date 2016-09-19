@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Linq;
+using DataParser.Interface;
 
 namespace DataParser
 {
@@ -29,6 +30,7 @@ namespace DataParser
 
         public string TransformToJson()
         {
+            var json = string.Empty;
             while (_data.Items.Count > 1)
             {
                 _elapsedSpan = new TimeSpan(_data.Items[1].Ticks - _data.Items[0].Ticks);
@@ -38,11 +40,10 @@ namespace DataParser
                 var miliseconds = Convert.ToInt32(_elapsedSpan.TotalMilliseconds);
                 Thread.Sleep(miliseconds);
 
-                var json = new JavaScriptSerializer().Serialize(list[0]);
-
+                json = new JavaScriptSerializer().Serialize(list[0]);
                 return json;
-
             }
+            return json;
         }
     }
 }
