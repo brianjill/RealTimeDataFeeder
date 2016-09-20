@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataParser
 {
-    public class XmlItem : AbstractItem
+    public class XmlItem : Item
     {
         public string Time { get; set; }
         

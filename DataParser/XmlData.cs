@@ -11,29 +11,7 @@ namespace DataParser
 {
     public class XmlData : AbstractData
     {
-        public XmlData() 
-        {
-            Console.WriteLine("Initializing data from XML...");
-        }
-
-        public string ItemType
-        {
-            get
-            {
-                return "XmlItem";
-                    
-            }
-        }
-
-        public string FilePath
-        {
-            get
-            {
-                return File.Exists(BasePath + @"\data\CementData.xml") ? BasePath + @"\data\CementData.xml" : string.Empty;
-            }
-
-        }
-
+        
         public override void Parse()
         {
             if(string.IsNullOrEmpty(FilePath)) return;
@@ -48,7 +26,6 @@ namespace DataParser
                 {
                     string[] readerData = reader.Value.Split(delimiterChars);
 
-                    //TODO: make a function to return the value
                     XmlItem item = new XmlItem();
                     item.Time = readerData[0];
                     item.Ticks = Convert.ToDateTime(readerData[0]).Ticks;
@@ -82,7 +59,12 @@ namespace DataParser
                 }
             }
 
-            Items = new List<AbstractItem>(listData.FindAll(e => e.Ticks >= DateTime.Now.Ticks));
+            Items = new List<Item>(listData.FindAll(e => e.Ticks >= DateTime.Now.Ticks));
+        }
+
+        public XmlData()
+        {
+            FilePath = File.Exists(BasePath + @"\data\CementData.xml") ? BasePath + @"\data\CementData.xml" : string.Empty;
         }
     }
 }

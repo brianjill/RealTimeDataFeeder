@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataParser
 {
-    public abstract class AbstractItem
+    public class Item
     {
         public long Ticks { get; set; }
     }

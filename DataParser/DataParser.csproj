@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractData.cs" />
-    <Compile Include="AbstractItem.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="DataParser.cs" />
     <Compile Include="Interface\IParse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

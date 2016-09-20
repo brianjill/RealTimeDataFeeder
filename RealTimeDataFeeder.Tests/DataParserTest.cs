@@ -30,7 +30,7 @@ namespace RealTimeDataFeeder.Tests
                 new XmlItem {Ticks = testDate.Ticks, ANNVEL_MMAX = (float) 0.87}
             };
 
-            XmlDataMock.Object.Items = new List<AbstractItem>(list);
+            XmlDataMock.Object.Items = new List<Item>(list);
             XmlDataMock.SetupAllProperties();
             TargetXml = new DataParser<XmlData>(XmlDataMock.Object);
         }
