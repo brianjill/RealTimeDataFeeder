@@ -29,7 +29,7 @@ namespace DataSubscriber
 
             // Create the topic "Hello World" for the String type
             DDS.Topic topic = participant.create_topic(
-                        "Hello, World",
+                        "DataStream",
                         DDS.StringTypeSupport.get_type_name(),
                         DDS.DomainParticipant.TOPIC_QOS_DEFAULT,
                         null, /* Listener */

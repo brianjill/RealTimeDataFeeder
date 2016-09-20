@@ -33,6 +33,8 @@ namespace RealTimeDataFeeder.Tests
         {
             Target.Parse();
 
+            Assert.IsNotNull(Target.Items[0]);
+
             var items0 = (XmlItem) Target.Items[0];
 
             Assert.AreEqual(635976576000000000, Target.Items[0].Ticks);

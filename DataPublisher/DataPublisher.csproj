@@ -73,6 +73,15 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataParser\DataParser.csproj">
+      <Project>{4E4AC415-6FA4-4963-BD0E-D58F8DB3E669}</Project>
+      <Name>DataParser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /y  "D:\Program Files\rti_connext_dds-5.2.3\lib\i86Win32VS2013\*.dll"  "$(TargetDir)"</PostBuildEvent>

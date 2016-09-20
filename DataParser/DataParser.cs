@@ -35,6 +35,9 @@ namespace DataParser
 
         public string TransformToJson()
         {
+            if (_data.Items == null) return string.Empty;
+            if (_data.Items.Count < 1) return string.Empty;
+            
             var json = string.Empty;
             while (_data.Items.Count > 1)
             {

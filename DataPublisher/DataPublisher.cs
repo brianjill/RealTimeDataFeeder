@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataParser;
 
 namespace DataPublisher
 {
@@ -25,7 +26,7 @@ namespace DataPublisher
 
             // Create the topic "Hello World" for the String type
             DDS.Topic topic = participant.create_topic(
-                        "Hello, World",
+                        "DataStream",
                         DDS.StringTypeSupport.get_type_name(),
                         DDS.DomainParticipant.TOPIC_QOS_DEFAULT,
                         null, /* Listener */
@@ -47,15 +48,21 @@ namespace DataPublisher
                 Console.Error.WriteLine("Unable to create DDS data writer");
                 return;
             }
-
+            
+            var xml = new DataParser<XmlData>(new XmlData());
+            
             Console.WriteLine("Ready to write data.");
             Console.WriteLine("When the subscriber is ready, you can start writing.");
             Console.Write("Press CTRL+C to terminate or enter an empty line to do a clean shutdown.\n\n");
 
             for (; ; )
             {
-                Console.Write("Please type a message> ");
-                string toWrite = Console.In.ReadLine();
+                //Console.Write("Please type a message> ");
+                //string toWrite = Console.In.ReadLine();
+                xml.Parse();
+                var toWrite = xml.TransformToJson();
+
+                Console.Write(toWrite);
                 try
                 {
                     ddsWriter.write(toWrite, ref DDS.InstanceHandle_t.HANDLE_NIL);
