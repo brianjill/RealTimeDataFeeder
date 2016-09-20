@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.ServiceBus.Messaging;
 
 namespace DataSubscriber
 {
@@ -11,6 +12,9 @@ namespace DataSubscriber
     {
         // For clean shutdown sequence
         private static bool shutdown_flag = false;
+
+        private static string connectionString = "Endpoint=sb://witsmldemo-ns.servicebus.windows.net/;SharedAccessKeyName=SendRule;SharedAccessKey=B19j5hx3m3+GQSn9QfYes2gfQIXSVxriSAiyp1abTGE=;EntityPath=witsmldemo";
+        private static EventHubClient eventHubClient = EventHubClient.CreateFromConnectionString(connectionString);
 
         public static void Main(string[] argv)
         {
@@ -80,9 +84,12 @@ namespace DataSubscriber
             {
                 try
                 {
-                    string sample = stringReader.take_next_sample(info);
-                    Console.WriteLine(sample);
-                    if (sample == "")
+                    string message = stringReader.take_next_sample(info);
+                    Console.WriteLine(message);
+                    Console.WriteLine("{0} > Sending message to EventHub", DateTime.Now);
+                    eventHubClient.Send(new EventData(Encoding.UTF8.GetBytes(message)));
+
+                    if (message == "")
                     {
                         shutdown_flag = true;
                     }

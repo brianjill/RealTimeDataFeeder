@@ -33,13 +33,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ServiceBus">
+      <HintPath>..\packages\WindowsAzure.ServiceBus.3.3.2\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
     <Reference Include="nddsdotnet451">
       <HintPath>..\..\..\..\Program Files\rti_connext_dds-5.2.3\lib\i86Win32VS2013\nddsdotnet451.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
