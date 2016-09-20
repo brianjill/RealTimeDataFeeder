@@ -26,7 +26,7 @@ namespace DataPublisher
 
             // Create the topic "Hello World" for the String type
             DDS.Topic topic = participant.create_topic(
-                        "DataStream",
+                        "CapgeminiDataStream",
                         DDS.StringTypeSupport.get_type_name(),
                         DDS.DomainParticipant.TOPIC_QOS_DEFAULT,
                         null, /* Listener */
