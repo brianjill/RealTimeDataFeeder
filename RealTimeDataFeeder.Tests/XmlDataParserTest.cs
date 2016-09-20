@@ -12,11 +12,11 @@ namespace RealTimeDataFeeder.Tests
     /// Summary description for DataParserTest
     /// </summary>
     [TestClass]
-    public class DataParserTest
+    public class XmlDataParserTest
     {
         public DataParser<XmlData> TargetXml;
         public Mock<XmlData> XmlDataMock;
-
+        
         [TestInitialize]
         public void init()
         {

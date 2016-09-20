@@ -24,7 +24,21 @@ namespace DataParser
             return !string.IsNullOrEmpty(text) && text != "NULL" ? float.Parse(text, System.Globalization.CultureInfo.InvariantCulture) : 0;
         }
 
-        public AbstractData()
+        public string GetDataAsString(string text)
+        {
+            return !string.IsNullOrEmpty(text) ? text : "";
+        }
+
+        public double GetRandomDouble(int minValue, double maxValue)
+        {
+            Random random = new Random();
+            double number = random.NextDouble() * (maxValue - minValue) + minValue;
+            if (number < 0)
+                number *= -1;
+
+            return Math.Round(number, 2); ;
+        }
+        protected AbstractData()
         {
             BasePath = ConfigurationManager.AppSettings["XmlDataFilePath"];
         }

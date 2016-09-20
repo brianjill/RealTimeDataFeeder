@@ -23,6 +23,11 @@ namespace DataParser
             _data = data;
         }
 
+        public void SetFilePath(string filePath)
+        {
+            _data.FilePath = File.Exists(_data.BasePath + filePath) ? _data.BasePath + filePath : string.Empty;
+        }
+
         public void Parse()
         {
             _data.Parse();
