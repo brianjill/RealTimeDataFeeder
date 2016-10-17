@@ -56,8 +56,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CsvDynamicDataParserTest.cs" />
     <Compile Include="CsvDataParserTest.cs" />
     <Compile Include="XmlDataParserTest.cs" />
+    <Compile Include="CsvDynamicDataTest.cs" />
     <Compile Include="XmlDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

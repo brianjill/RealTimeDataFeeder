@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="AbstractData.cs" />
     <Compile Include="CsvData.cs" />
+    <Compile Include="CsvDynamicData.cs" />
+    <Compile Include="CsvDynamicItem.cs" />
     <Compile Include="CsvItem.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="DataParser.cs" />

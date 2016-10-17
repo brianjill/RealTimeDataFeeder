@@ -48,7 +48,7 @@ namespace DataPublisher
                 Console.Error.WriteLine("Unable to create DDS data writer");
                 return;
             }
-            
+            /*
             var xml = new DataParser<XmlData>(new XmlData());
             
             Console.WriteLine("Ready to write data.");
@@ -77,6 +77,37 @@ namespace DataPublisher
                     break;
                 }
             }
+            */
+
+            var csvDynamic = new DataParser<CsvDynamicData>(new CsvDynamicData());
+
+            Console.WriteLine("Ready to write data.");
+            Console.WriteLine("When the subscriber is ready, you can start writing.");
+            Console.Write("Press CTRL+C to terminate or enter an empty line to do a clean shutdown.\n\n");
+
+            for (; ; )
+            {
+                //Console.Write("Please type a message> ");
+                //string toWrite = Console.In.ReadLine();
+                csvDynamic.Parse();
+                var toWrite = csvDynamic.TransformToJson();
+
+                Console.Write(toWrite);
+                try
+                {
+                    ddsWriter.write(toWrite, ref DDS.InstanceHandle_t.HANDLE_NIL);
+                }
+                catch (DDS.Retcode_Error e)
+                {
+                    Console.Error.WriteLine("Write error: " + e.Message);
+                    break;
+                }
+                if (toWrite == "")
+                {
+                    break;
+                }
+            }
+
             Console.WriteLine("Shutting down...");
             participant.delete_contained_entities();
             DDS.DomainParticipantFactory.get_instance().delete_participant(ref participant);

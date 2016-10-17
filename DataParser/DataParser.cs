@@ -49,6 +49,10 @@ namespace DataParser
                 Thread.Sleep(miliseconds);
 
                 json = new JavaScriptSerializer().Serialize(list[0]);
+
+                if (_data.GetType().ToString().Contains("Dynamic"))
+                    json = json.Replace(@"""Properties"":{",String.Empty).Replace("},",",");
+
                 return json;
             }
             return json;
