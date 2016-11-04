@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DataParser;
 
@@ -80,17 +81,26 @@ namespace DataPublisher
             */
 
             var csvDynamic = new DataParser<CsvDynamicData>(new CsvDynamicData());
+            csvDynamic.Parse();
 
             Console.WriteLine("Ready to write data.");
             Console.WriteLine("When the subscriber is ready, you can start writing.");
             Console.Write("Press CTRL+C to terminate or enter an empty line to do a clean shutdown.\n\n");
 
-            for (; ; )
+            var list = csvDynamic.GetItems();
+            for (int i = 0; i < list.Count; i++)
             {
                 //Console.Write("Please type a message> ");
                 //string toWrite = Console.In.ReadLine();
-                csvDynamic.Parse();
-                var toWrite = csvDynamic.TransformToJson();
+                if (i > 0)
+                {
+                    var elapsedSpan = new TimeSpan(list[i].Ticks - list[i - 1].Ticks);
+
+                    var miliseconds = Convert.ToInt32(elapsedSpan.TotalMilliseconds);
+                    Thread.Sleep(miliseconds);
+                }
+
+                string toWrite = csvDynamic.TransformToJson(i);
 
                 Console.Write(toWrite);
                 try

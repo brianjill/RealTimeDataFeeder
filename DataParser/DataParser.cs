@@ -33,6 +33,12 @@ namespace DataParser
             _data.Parse();
         }
 
+        public List<Item> GetItems()
+        {
+            return _data.Items;
+        }
+
+        
         public string TransformToJson()
         {
             if (_data.Items == null) return string.Empty;
@@ -55,6 +61,19 @@ namespace DataParser
 
                 return json;
             }
+            return json;
+        }
+        
+
+        public string TransformToJson(int index)
+        {
+            if (index >= _data.Items.Count) return string.Empty;
+
+            var json = new JavaScriptSerializer().Serialize(_data.Items[index]);
+
+            if (_data.GetType().ToString().Contains("Dynamic"))
+                json = json.Replace(@"""Properties"":{", String.Empty).Replace("},", ",");
+
             return json;
         }
     }

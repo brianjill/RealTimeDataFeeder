@@ -74,13 +74,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataParser\DataParser.csproj">
-      <Project>{4E4AC415-6FA4-4963-BD0E-D58F8DB3E669}</Project>
-      <Name>DataParser</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\DataParser\DataParser.csproj">
+      <Project>{4e4ac415-6fa4-4963-bd0e-d58f8db3e669}</Project>
+      <Name>DataParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
